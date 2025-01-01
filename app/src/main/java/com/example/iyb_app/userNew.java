@@ -3,6 +3,9 @@ package com.example.iyb_app;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,16 +17,27 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class userNew extends AppCompatActivity {
+    AutoCompleteTextView autoCompleteTextView;
 
+    ArrayAdapter<String> adapterItems;
+    String[] currencies = {"(៛) Khmer Riel","($) United States Dollar"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_user_new);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        autoCompleteTextView = findViewById(R.id.dropcurrencies);
+        adapterItems = new ArrayAdapter<String>(this,R.layout.dropdown_currencies, currencies);
+
+        autoCompleteTextView.setAdapter(adapterItems);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                Toast.makeText(userNew.this,"Item: "+ item, Toast.LENGTH_SHORT).show();
+            }
         });
     }
     public void handleText(View text)
