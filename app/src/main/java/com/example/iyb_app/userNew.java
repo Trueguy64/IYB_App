@@ -56,10 +56,18 @@ public class userNew extends AppCompatActivity {
                     FileOutputStream fileOutputStream = null;
                     try {
                         fileOutputStream = new FileOutputStream(myExternalFile);
-                        try {
-                            fileOutputStream.write(item.getBytes());
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                        if(item.equals("(៛) Khmer Riel")) {
+                            try {
+                                fileOutputStream.write("khr".getBytes());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        } else if (item.equals("($) United States Dollar")) {
+                            try {
+                                fileOutputStream.write("usd".getBytes());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);

@@ -34,17 +34,7 @@
         app:layout_constraintHorizontal_bias="0.288"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/source" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="109dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="156dp"
-        android:onClick="onClickLoad"
-        android:text="Test"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/source" />
+
     <TextView
         android:id="@+id/nameOutput"
         android:layout_width="wrap_content"
@@ -108,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="currencies"
             android:hint="Select a Currency"
             android:inputType="none" />
 
