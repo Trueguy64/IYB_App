@@ -16,12 +16,15 @@
             android:name=".lucasclass"
             android:exported="false"
             android:label="@string/title_activity_lucasclass"
-            android:theme="@style/Theme.IYB_App" />
+            android:theme="@style/Theme.IYB_App"
+            android:finishOnTaskLaunch="true" />
         <activity
             android:name=".userNew"
+            android:finishOnTaskLaunch="true"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:finishOnTaskLaunch="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

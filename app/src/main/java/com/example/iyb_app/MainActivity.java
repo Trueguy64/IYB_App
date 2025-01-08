@@ -1,5 +1,9 @@
 package com.example.iyb_app;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +16,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else{
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }
     public void startSaving(View start)
     {
@@ -23,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, userNew.class);
         Intent l = new Intent(this, lucasclass.class);
         startActivity(!userData.exists() ? i : l);
-
+        finish();
     }
 
 }
