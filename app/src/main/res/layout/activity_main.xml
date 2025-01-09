@@ -7,34 +7,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="IYB Savings"
             android:scaleType="centerCrop"
-            android:src="@drawable/startpage">
-            </ImageView>
-    </FrameLayout>
+            android:src="@drawable/startpage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/start"
-        android:layout_width="300dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="48dp"
-        android:background="@drawable/rounded_corner"
-        android:clickable="true"
-        android:onClick="startSaving"
-        android:text="START SAVING"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" >
-        </Button>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="242dp"
+            android:layout_height="81dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/iyb" />
+
+        <Button
+            android:id="@+id/start"
+            android:backgroundTint="@color/button_purple"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
+            app:cornerRadius="25dp"
+            android:layout_marginBottom="48dp"
+            android:fontFamily="@font/helveticalight"
+            android:elevation="1.5dp"
+            android:translationZ="2dp"
+            android:stateListAnimator="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="startSaving"
+            android:text="START SAVING NOW"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

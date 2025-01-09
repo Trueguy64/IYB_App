@@ -1,7 +1,10 @@
 package com.example.iyb_app;
 import android.graphics.Color;
+import android.graphics.Outline;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.ViewOutlineProvider;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -9,7 +12,9 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import java.io.File;
-
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -37,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(!userData.exists() ? i : l);
         finish();
     }
-
 }
