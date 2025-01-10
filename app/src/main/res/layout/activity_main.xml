@@ -12,47 +12,62 @@
         android:layout_height="match_parent">
 
         <ImageView
+
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="IYB Savings"
             android:scaleType="centerCrop"
-            android:src="@drawable/startpage"
+            android:src="@drawable/iybstartpage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
+        <ImageView
 
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="tint"
+            android:scaleType="centerCrop"
+            app:tint="#6F000000"
+            android:src="@drawable/iybstartpage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="242dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="68dp"
+            android:layout_width="263dp"
+            android:layout_height="97dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/iyb" />
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:srcCompat="@drawable/iyb_riel_dollar" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/start"
-            android:backgroundTint="@color/button_purple"
             android:layout_width="300dp"
-            android:layout_height="75dp"
-            app:cornerRadius="25dp"
+            android:layout_height="65dp"
             android:layout_marginBottom="48dp"
-            android:fontFamily="@font/helveticalight"
-            android:elevation="1.5dp"
-            android:translationZ="2dp"
-            android:stateListAnimator="@null"
+            android:background="@drawable/rounded_corner"
             android:clickable="true"
+            android:elevation="1.5dp"
             android:focusable="true"
+            android:fontFamily="@font/helvetica"
             android:onClick="startSaving"
+            android:stateListAnimator="@null"
             android:text="START SAVING NOW"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:translationZ="2dp"
+            app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"

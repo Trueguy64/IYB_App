@@ -15,11 +15,13 @@ import java.io.File;
 import android.graphics.Outline;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import androidx.core.splashscreen.SplashScreen;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SplashScreen.installSplashScreen(this);
         setContentView(R.layout.activity_main);
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

@@ -8,5 +8,9 @@
         android:fontStyle="normal"
         android:fontWeight="100"
         android:font="@font/helveticalight" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="200"
+        android:font="@font/helvetica" />
 
 </font-family>
