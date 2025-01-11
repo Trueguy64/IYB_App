@@ -58,6 +58,7 @@ public class userNew extends AppCompatActivity {
         outputUsernameToFile(givenInput);
         Intent l = new Intent(this, lucasclass.class);
         startActivity(l);
+        finish();
     }
     public void outputUsernameToFile(String fileContent)
     {

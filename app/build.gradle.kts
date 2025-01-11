@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.iyb_app"
+    namespace = "com.threestoges.iyb_app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.iyb_app"
+        applicationId = "com.threestoges.iyb_app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -36,7 +36,7 @@ android {
         compose = true
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
