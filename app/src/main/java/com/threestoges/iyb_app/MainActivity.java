@@ -1,9 +1,10 @@
-package com.example.iyb_app;
+package com.threestoges.iyb_app;
 import android.graphics.*;
 import android.os.*;
 import android.view.*;
 import android.widget.Button;
 import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import java.io.File;

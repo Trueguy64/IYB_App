@@ -1,4 +1,4 @@
-package com.example.iyb_app;
+package com.threestoges.iyb_app;
 
 import org.junit.Test;
 
