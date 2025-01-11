@@ -1,7 +1,10 @@
 package com.example.iyb_app;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.*;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.*;
@@ -10,7 +13,9 @@ public class userNew extends AppCompatActivity {
     //Defining Activity Wide Variables
     private final String filepath = "user";
     private final String FILENAME = "saved-data.txt";
-    EditText username;
+    EditText family;
+    EditText given;
+    private String item;
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
     String[] currencies = {"(៛) Khmer Riel", "($) United States Dollar"};
@@ -20,7 +25,12 @@ public class userNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_user_new);
-        username = findViewById(R.id.source);
+        family = findViewById(R.id.familyName);
+        given = findViewById(R.id.givenName);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
         autoCompleteTextView = findViewById(R.id.dropcurrencies);
         autoCompleteTextView.addTextChangedListener(textWatcher);
 
@@ -28,70 +38,53 @@ public class userNew extends AppCompatActivity {
         autoCompleteTextView.setAdapter(adapterItems);
 
         // Set the item click listener for AutoCompleteTextView
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-                Toast.makeText(userNew.this, "Item: " + item, Toast.LENGTH_SHORT).show();
-                outputCurrencyToFile(item);
-                // Update the button state when an item is selected
-                updateButtonState();
-            }
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            item = parent.getItemAtPosition(position).toString();
+            // Update the button state when an item is selected
+            updateButtonState();
         });
-
         // Update button state initially in case of pre-filled data
         updateButtonState();
+
     }
 
     public void handleText(View text) {
-        username.addTextChangedListener(textWatcher);
-        String input = username.getText().toString().trim();
-        Toast.makeText(this, input, Toast.LENGTH_LONG).show();
-        outputUsernameToFile();
+        family.addTextChangedListener(textWatcher);
+        given.addTextChangedListener(textWatcher);
+        String familyInput = family.getText().toString().trim();
+        String givenInput = given.getText().toString().trim();
+        outputCurrencyToFile(item);
+        outputUsernameToFile(familyInput);
+        outputUsernameToFile(givenInput);
+        Intent l = new Intent(this, lucasclass.class);
+        startActivity(l);
     }
-    public void outputUsernameToFile()
+    public void outputUsernameToFile(String fileContent)
     {
-        String fileContent = username.getText().toString().trim();
         if(!fileContent.isEmpty()){
             File myExternalFile = new File(getExternalFilesDir(filepath), FILENAME);
-            FileOutputStream fileOutputStream = null;
-            try {
-                fileOutputStream = new FileOutputStream(myExternalFile,true);
-                try {
-                    fileOutputStream.write("\n".getBytes());
-                    fileOutputStream.write(fileContent.getBytes());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } catch (FileNotFoundException e) {
+            try(FileOutputStream fileOutputStream = new FileOutputStream(myExternalFile,true)) {
+                fileOutputStream.write("\n".getBytes());
+                fileOutputStream.write(fileContent.getBytes());
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            username.setText("");
+            family.setText("");
+            given.setText("");
         } else{
             Toast.makeText(this, "Text field cannot be empty.",Toast.LENGTH_SHORT).show();
         }
     }
-    public void outputCurrencyToFile(String item)
-    {
-        if(!item.isEmpty()){
+    public void outputCurrencyToFile(String item) {
+        if (!item.isEmpty()) {
             File myExternalFile = new File(getExternalFilesDir(filepath), FILENAME);
-            FileOutputStream fileOutputStream = null;
-            try {
-                fileOutputStream = new FileOutputStream(myExternalFile);
-                if(item.equals("(៛) Khmer Riel")) {
-                    try {
-                        fileOutputStream.write("khr".getBytes());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+            try (FileOutputStream fileOutputStream = new FileOutputStream(myExternalFile,true)) {
+                if (item.equals("(៛) Khmer Riel")) {
+                    fileOutputStream.write("khr".getBytes());
                 } else if (item.equals("($) United States Dollar")) {
-                    try {
-                        fileOutputStream.write("usd".getBytes());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    fileOutputStream.write("usd".getBytes());
                 }
-            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -110,9 +103,10 @@ public class userNew extends AppCompatActivity {
 
     // Method to update button state based on inputs
     private void updateButtonState() {
-        String usernameInput = username.getText().toString().trim();
+        String familyNameInput = family.getText().toString().trim();
+        String givenNameInput = given.getText().toString().trim();
         String listInput = autoCompleteTextView.getText().toString().trim();
         // Enable the button if both fields are not empty
-        findViewById(R.id.button).setEnabled(!usernameInput.isEmpty() && !listInput.isEmpty());
+        findViewById(R.id.button).setEnabled(!familyNameInput.isEmpty() && !givenNameInput.isEmpty() && !listInput.isEmpty());
     }
 }

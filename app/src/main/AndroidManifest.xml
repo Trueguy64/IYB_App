@@ -13,21 +13,23 @@
         android:theme="@style/Theme.IYB_App"
         tools:targetApi="31">
         <activity
-            android:name=".lucasclass"
-            android:exported="false"
-            android:label="@string/title_activity_lucasclass"
-            android:theme="@style/Theme.IYB_App"
-            android:finishOnTaskLaunch="true" />
-        <activity
-            android:name=".userNew"
-            android:finishOnTaskLaunch="true"
+            android:name=".welcometoiyb"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".lucasclass"
+            android:exported="false"
             android:finishOnTaskLaunch="true"
-            android:theme="@style/Theme.IYB_App.MySplash"
-            android:exported="true">
-
+            android:label="@string/title_activity_lucasclass"
+            android:theme="@style/Theme.IYB_App" />
+        <activity
+            android:name=".userNew"
+            android:exported="false"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:finishOnTaskLaunch="true"
+            android:theme="@style/Theme.IYB_App.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
