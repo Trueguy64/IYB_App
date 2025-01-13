@@ -13,6 +13,9 @@
         android:theme="@style/Theme.IYB_App"
         tools:targetApi="31">
         <activity
+            android:name=".viphou_graph_class"
+            android:exported="false" />
+        <activity
             android:name=".welcometoiyb"
             android:exported="false" />
         <activity
