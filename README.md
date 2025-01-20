@@ -19,15 +19,11 @@ git clone https://github.com/Trueguy64/IYB_App
 ```
 ### Opening the project
 - Once the project is done cloning, open Android Studio. 
-
 - From the top left, select File > Open. Then select the project folder
-
 - Usually the project folder is located within your home directory (or user directory on Windows).
 ### Building the App
 - Make sure to Sync Gradle and allow Android Studio to download all prerequisites, which is required for the app to build.
-
 - This will allow you to run it on your Android Virtual Device (AVD).
-  
 ## Dependencies
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 ## License
