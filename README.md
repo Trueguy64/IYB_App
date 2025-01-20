@@ -5,7 +5,7 @@ A simple personal finance manager with features such as:
 - The ability to set a monthly budget
 - Categorize each transaction
 - Allowing income to be added to transactions
-- All in one transaction log for easy view of financial summary
+- All in one transaction log for easy viewing of financial summary
 ## Building
 ### Prerequisites
 First, make sure you have these prerequisites before cloning the repository:
