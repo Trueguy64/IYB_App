@@ -1,7 +1,7 @@
 ![](.github/iyb_banner.png)
 > A Simple Android Budgeting App
 # Features 
-A personal finance manager that allows you to:
+A simple personal finance manager with features:
 - The ability to set a monthly budget
 - Categorize each transaction
 - Allowing income to be added to transactions
