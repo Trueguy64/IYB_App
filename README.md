@@ -1,4 +1,4 @@
-[](.github/iyb_banner.png)
+![](.github/iyb_banner.png)
 > A Simple Android Budgeting App
 # Features 
 A personal finance manager that allows you to:
