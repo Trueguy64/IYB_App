@@ -1,5 +1,5 @@
 
-An Android Budgeting App
+> A Simple Android Budgeting App
 # Features 
 A personal finance manager that allows you to:
 - The ability to set a monthly budget
