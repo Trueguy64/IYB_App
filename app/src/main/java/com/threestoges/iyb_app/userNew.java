@@ -56,7 +56,7 @@ public class userNew extends AppCompatActivity {
         outputCurrencyToFile(item);
         outputUsernameToFile(familyInput);
         outputUsernameToFile(givenInput);
-        Intent l = new Intent(this, lucasclass.class);
+        Intent l = new Intent(this, BudgetSetup.class);
         startActivity(l);
         finish();
     }

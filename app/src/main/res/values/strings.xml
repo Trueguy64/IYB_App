@@ -16,4 +16,12 @@
         <item>(៛) Khmer Riel</item>
         <item>($) United States Dollar</item>
     </string-array>
+
+    <string-array name="categories">
+        <item>Bills</item>
+        <item>Food</item>
+        <item>Clothing</item>
+        <item>Entertainment</item>
+        <item>Other</item>
+    </string-array>
 </resources>

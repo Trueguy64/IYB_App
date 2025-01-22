@@ -13,17 +13,23 @@
         android:theme="@style/Theme.IYB_App"
         tools:targetApi="31">
         <activity
-            android:name=".viphou_graph_class"
+            android:name=".Listview"
+            android:exported="false" />
+        <activity
+            android:name=".BudgetSetup"
+            android:exported="false" />
+        <activity
+            android:name=".LogsManager"
+            android:exported="false" />
+        <activity
+            android:name=".GraphAnalytics"
+            android:exported="false" />
+        <activity
+            android:name=".MainMenu"
             android:exported="false" />
         <activity
             android:name=".welcometoiyb"
             android:exported="false" />
-        <activity
-            android:name=".lucasclass"
-            android:exported="false"
-            android:finishOnTaskLaunch="true"
-            android:label="@string/title_activity_lucasclass"
-            android:theme="@style/Theme.IYB_App" />
         <activity
             android:name=".userNew"
             android:exported="false"

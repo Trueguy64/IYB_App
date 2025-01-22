@@ -10,6 +10,9 @@ import androidx.core.splashscreen.SplashScreen;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+    private final String FILENAME = "saved-data.txt";
+    private final String filepath = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,16 +22,20 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+        File userData = new File(getExternalFilesDir(filepath), FILENAME);
+        if(userData.exists()){
+            Intent l = new Intent(this, MainMenu.class);
+            startActivity(l);
+            finish();
+        }
     }
     public void startSaving(View start)
     {
-        String FILENAME = "saved-data.txt";
-        String filepath = "user";
         File userData = new File(getExternalFilesDir(filepath), FILENAME);
         findViewById(R.id.start).setEnabled(false);
         ((Button)findViewById(R.id.start)).setText("Saving Now");
         Intent w = new Intent(this, welcometoiyb.class);
-        Intent l = new Intent(this, lucasclass.class);
+        Intent l = new Intent(this, MainMenu.class);
         startActivity(!userData.exists() ? w : l);
         finish();
     }
