@@ -60,6 +60,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/helvetica"
         android:text="Create your first IYB Account"
+        android:alpha="0.65"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
