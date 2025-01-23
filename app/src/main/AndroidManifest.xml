@@ -17,7 +17,8 @@
             android:exported="false" />
         <activity
             android:name=".BudgetSetup"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LogsManager"
             android:exported="false" />
@@ -28,9 +29,11 @@
             android:name=".MainMenu"
             android:exported="false" />
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".welcometoiyb"
             android:exported="false" />
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".userNew"
             android:exported="false"
             android:finishOnTaskLaunch="true" />

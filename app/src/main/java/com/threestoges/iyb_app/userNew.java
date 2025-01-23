@@ -1,13 +1,17 @@
 package com.threestoges.iyb_app;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.*;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.*;
+
+import static android.app.PendingIntent.getActivity;
 
 public class userNew extends AppCompatActivity {
     //Defining Activity Wide Variables
@@ -23,7 +27,7 @@ public class userNew extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContentView(R.layout.activity_user_new);
         family = findViewById(R.id.familyName);
         given = findViewById(R.id.givenName);
@@ -42,6 +46,7 @@ public class userNew extends AppCompatActivity {
             item = parent.getItemAtPosition(position).toString();
             // Update the button state when an item is selected
             updateButtonState();
+            hideKeyboard(this);
         });
         // Update button state initially in case of pre-filled data
         updateButtonState();
@@ -59,6 +64,16 @@ public class userNew extends AppCompatActivity {
         Intent l = new Intent(this, BudgetSetup.class);
         startActivity(l);
         finish();
+    }
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
     public void outputUsernameToFile(String fileContent)
     {
@@ -110,4 +125,5 @@ public class userNew extends AppCompatActivity {
         // Enable the button if both fields are not empty
         findViewById(R.id.button).setEnabled(!familyNameInput.isEmpty() && !givenNameInput.isEmpty() && !listInput.isEmpty());
     }
+
 }
