@@ -9,7 +9,7 @@ A simple personal finance manager with features such as:
 ## Building
 ### Prerequisites
 First, make sure you have these prerequisites before cloning the repository:
-- Android Studio Ladybug (for AGP 8.7 Support)
+- Android Studio Ladybug (2024.2.1) (for AGP 8.7 Support)
 - Java 17
 - JetBrains Runtime 17.0.12 (jbr-17)
 ### Cloning
