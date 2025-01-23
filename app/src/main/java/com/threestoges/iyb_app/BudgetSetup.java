@@ -49,7 +49,6 @@ public class BudgetSetup extends AppCompatActivity {
                         if(budgetFile.exists()){
                             try(BufferedReader r = new BufferedReader(new FileReader(budgetFile))){
                                 netBudget = Double.parseDouble(r.readLine());
-                                r.close();
                             } catch(IOException e){
                                 Toast.makeText(BudgetSetup.this, "ERROR: BUFFEREDREADER", Toast.LENGTH_SHORT).show();
                             }
