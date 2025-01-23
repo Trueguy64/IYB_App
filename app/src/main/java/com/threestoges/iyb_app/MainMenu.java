@@ -42,17 +42,21 @@ public class MainMenu extends AppCompatActivity {
             return insets;
         });
 
+        //retrieving user settings for currency
         File userFile = new File(getExternalFilesDir(filePath), "saved-data.txt");
         currency = (userFile.exists() ? readFile(userFile, 0).toUpperCase() : "USD");
 
+        //retrieving up-to-date user net-budget and budget
         File budgetFile = new File(getExternalFilesDir(filePath), nbFileName);
         budget = (budgetFile.exists() ? Double.parseDouble(readFile(budgetFile, 1)) : 1);
         netBudget = (budgetFile.exists() ? Double.parseDouble(readFile(budgetFile, 0)) : budget);
         netBudgetText = findViewById(R.id.netBudgetText);
         netBudgetText.setText(netBudget + " " + currency);
+        //update bar and surplus text
         updateBar();
         updateSurplusText();
 
+        //extracting expenditure logs from logFile into logs
         File logFile = new File(getExternalFilesDir(filePath), fileName);
         if(logFile.exists()){
             int s = readFile(logFile, -1).split("\n").length;
@@ -61,6 +65,7 @@ public class MainMenu extends AppCompatActivity {
             }
         }
 
+        //button input setup
         Button openLogs = findViewById(R.id.openLogsButton);
         Button addEntry = findViewById(R.id.addEntryButton);
         Button openAnalytics = findViewById(R.id.analyticsButton);
@@ -101,16 +106,18 @@ public class MainMenu extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void addToLogs(){
+        //start dialog/popup
         final Dialog addToLogs = new Dialog(this);
         Objects.requireNonNull(addToLogs.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.argb(255, 7, 17, 13)));
         addToLogs.setContentView(R.layout.popup_add_entry);
         addToLogs.setCancelable(true);
         addToLogs.show();
         TextView titleCost = addToLogs.findViewById(R.id.costTitle);
-        titleCost.setText("TOTAL COST (" + currency + "):");
+        titleCost.setText("TOTAL COST (" + currency + "):"); //user currency
 
+        //setting up all of the input fields in popup
         Spinner dropdown = addToLogs.findViewById(R.id.categoryDropdown);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item); //string array from strings.xml
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
         EditText name = addToLogs.findViewById(R.id.logName);
@@ -120,18 +127,20 @@ public class MainMenu extends AppCompatActivity {
         logAll.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(!String.valueOf(name.getText()).isEmpty() && !String.valueOf(cost.getText()).isEmpty()){
+                if(!String.valueOf(name.getText()).isEmpty() && !String.valueOf(cost.getText()).isEmpty()){ //fields cannot be empty or toast message prints out
                     try{
+                        //getting values from input fields
                         sName = String.valueOf(name.getText());
                         sCategory = dropdown.getSelectedItem().toString();
                         sCost = Double.parseDouble(cost.getText().toString());
                         if(netBudget - sCost >= 0){
                             netBudget -= sCost;
-                            netBudgetText.setText(netBudget + " " + currency);
+                            netBudgetText.setText(netBudget + " " + currency); //updating net budget text
                             File budgetFile = new File(getExternalFilesDir(filePath), nbFileName);
                             if(budgetFile.exists())
-                                budgetFile.delete();
+                                budgetFile.delete(); //deleting file to rewrite
                             try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
+                                //rewriting budgetFile with new values
                                 f.write((netBudget + "\n").getBytes());
                                 f.write((String.valueOf(budget)).getBytes());
                             } catch(IOException e){
@@ -142,12 +151,13 @@ public class MainMenu extends AppCompatActivity {
                             SimpleDateFormat getDate = new SimpleDateFormat("dd-MM-yyyy");
                             String currentDate = getDate.format(new Date());
                             int id = 0;
-                            String q = (currentDate + "," + sName + "," + sCategory + "," + sCost + "," + currency + ",id: " + id);
+                            String q = (currentDate + "," + sName + "," + sCategory + "," + sCost + "," + currency + ",id: " + id); //logs string format
                             for(String c: logs){
-                                id += c.equals(q) ? 1 : 0;
+                                id += c.equals(q) ? 1 : 0; //checking for duplicates
                             }
                             q = (currentDate + "," + sName + "," + sCategory + "," + sCost + "," + currency + ",id: " + id);
                             logs.add(q);
+                            //writing new log entry into logFIle
                             try(FileOutputStream f = new FileOutputStream(logFile,true)){
                                 f.write((q + "\n").getBytes());
                             } catch(IOException e){
@@ -156,6 +166,7 @@ public class MainMenu extends AppCompatActivity {
                             updateBar();
                             updateSurplusText();
                             addToLogs.cancel();
+                            //updating bar and surplus text -> closing popup, end of addToLOgs
                         } else {
                             Toast.makeText(MainMenu.this, "COST HIGHER THAN NET BUDGET, TRY AGAIN", Toast.LENGTH_SHORT).show();
                         }
@@ -170,21 +181,23 @@ public class MainMenu extends AppCompatActivity {
         //Log.d("inputlog2", readFile(logFile, -1));
     }
 
+    //file parser for scraping
     private String readFile(File file, int line){
         if(line < 0){
             try(BufferedReader r = new BufferedReader(new FileReader(file))){
-                StringBuilder listed = new StringBuilder();
+                StringBuilder listed = new StringBuilder(); //to append each line
                 String add;
                 while((add = r.readLine()) != null){
                     listed.append(add).append("\n");
                 }
                 r.close();
-                return listed.toString();
+                return listed.toString(); //returns string that can be converted into array || list
             } catch(IOException e){
                 Toast.makeText(this, "ERROR: BUFFEREDREADER", Toast.LENGTH_SHORT).show();
                 return "empty";
             }
         }
+        //gets string from parameter value line
         try(BufferedReader r = new BufferedReader(new FileReader(file))){
             String result = r.readLine();
             for(int q = 0; q < line; q++){
@@ -198,11 +211,13 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+    //updates progress bar
     private void updateBar(){
         ProgressBar bar = findViewById(R.id.netBudgetBar);
         bar.setProgress((int)((netBudget/budget)*100));
     }
 
+    //updates text which appears under net budget value when over the budget
     private void updateSurplusText(){
         TextView surplusText = findViewById(R.id.surplusText);
         surplusText.setText(netBudget > budget ? "+" + (netBudget-budget) : "");
