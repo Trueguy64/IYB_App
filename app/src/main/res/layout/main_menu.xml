@@ -44,8 +44,8 @@
         android:id="@+id/surplusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginEnd="177dp"
+        android:layout_marginStart="186dp"
+        android:layout_marginEnd="186dp"
         android:text="TEXT"
         android:textAlignment="center"
         android:textColor="#4CAF50"
@@ -53,7 +53,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/netBudgetBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/netBudgetText" />
 

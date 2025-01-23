@@ -46,7 +46,7 @@ public class GraphAnalytics extends AppCompatActivity {
         // Initialize PieChart
         PieChart pieChart = findViewById(R.id.pieChart);
 
-        //Setup of log file
+        // Reading logFile into logs
         File logFile = new File(getExternalFilesDir(filePath), fileName);
         if(logFile.exists()){
             try{
@@ -65,6 +65,7 @@ public class GraphAnalytics extends AppCompatActivity {
         Map<String, Double> logMap = new HashMap<>();
         convert(logReader, logMap);
 
+        // Get total spending for denominator
         double total = 0;
         for(String q: logMap.keySet()){
             total += logMap.get(q);
@@ -122,6 +123,7 @@ public class GraphAnalytics extends AppCompatActivity {
         pieChart.invalidate();
     }
 
+    // Method to convert list to hashmap
     private void convert(List<String> list, Map<String, Double> map){
         String category = "";
         Double val = 0d;
@@ -129,6 +131,7 @@ public class GraphAnalytics extends AppCompatActivity {
         int start = 0;
         int end = 0;
         for(String q: list){
+            // Getting start and end indexes for category string
             for(int r = 0; r < q.length(); r++){
                 if(q.charAt(r) == ','){
                     counter++;
@@ -138,6 +141,7 @@ public class GraphAnalytics extends AppCompatActivity {
             }
             category = q.substring(start, end);
             counter = 0;
+            // Getting start and end indexes for cost string
             for(int r = 0; r < q.length(); r++){
                 if(q.charAt(r) == ','){
                     counter++;
@@ -150,7 +154,7 @@ public class GraphAnalytics extends AppCompatActivity {
             } catch(NumberFormatException e){
                 Toast.makeText(this, "FAILED TO MAP LOGS", Toast.LENGTH_SHORT).show();
             }
-            if(!map.containsKey(category)){
+            if(!map.containsKey(category)){ // Checking for duplicates
                 map.put(category, val);
             } else {
                 map.replace(category, map.get(category), val+map.get(category));

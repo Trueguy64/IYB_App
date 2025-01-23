@@ -36,31 +36,34 @@ public class BudgetSetup extends AppCompatActivity {
             return insets;
         });
 
+        //getting input fields
         Button proceed = findViewById(R.id.proceedButton);
         EditText budgetInput = findViewById(R.id.budgetInputText);
         proceed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(!String.valueOf(budgetInput.getText()).isEmpty()){
+                if(!String.valueOf(budgetInput.getText()).isEmpty()){ //checking for empty input
                     try{
                         budget = Double.parseDouble(budgetInput.getText().toString());
                         double netBudget = budget;
                         File budgetFile = new File(getExternalFilesDir(filePath), nbFileName);
+                        //checking for existing data to replace
                         if(budgetFile.exists()){
                             try(BufferedReader r = new BufferedReader(new FileReader(budgetFile))){
                                 netBudget = Double.parseDouble(r.readLine());
-                                r.close();
                             } catch(IOException e){
                                 Toast.makeText(BudgetSetup.this, "ERROR: BUFFEREDREADER", Toast.LENGTH_SHORT).show();
                             }
-                            budgetFile.delete();
+                            budgetFile.delete(); //deleting file to rewrite
                             try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
+                                //rewrite file with new budget value
                                 f.write((netBudget + "\n").getBytes());
                                 f.write(String.valueOf(budget).getBytes());
                             } catch(IOException e){
                                 Toast.makeText(BudgetSetup.this, "ERROR: FILEOUTPUTSTREAM", Toast.LENGTH_SHORT).show();
                             }
                         } else{
+                            //if there is no existing data (first time setup):
                             try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
                                 f.write((netBudget + "\n").getBytes());
                                 f.write(String.valueOf(budget).getBytes());
@@ -70,7 +73,7 @@ public class BudgetSetup extends AppCompatActivity {
                         }
                         //Log.d("inputlog", readFile(budgetFile, 1));
                         Intent mainMenu = new Intent(BudgetSetup.this, MainMenu.class);
-                        startActivity(mainMenu);
+                        startActivity(mainMenu); //go to main menu
                         finish();
                     } catch(NumberFormatException e){
                         Toast.makeText(BudgetSetup.this, "INVALID INPUT", Toast.LENGTH_SHORT).show();
