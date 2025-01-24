@@ -17,6 +17,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.*;
 
 import java.io.*;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class MainMenu extends AppCompatActivity {
@@ -51,7 +53,7 @@ public class MainMenu extends AppCompatActivity {
         budget = (budgetFile.exists() ? Double.parseDouble(readFile(budgetFile, 1)) : 1);
         netBudget = (budgetFile.exists() ? Double.parseDouble(readFile(budgetFile, 0)) : budget);
         netBudgetText = findViewById(R.id.netBudgetText);
-        netBudgetText.setText(netBudget + " " + currency);
+        updateNetBudgetText();
         //update bar and surplus text
         updateBar();
         updateSurplusText();
@@ -135,7 +137,7 @@ public class MainMenu extends AppCompatActivity {
                         sCost = Double.parseDouble(cost.getText().toString());
                         if(netBudget - sCost >= 0){
                             netBudget -= sCost;
-                            netBudgetText.setText(netBudget + " " + currency); //updating net budget text
+                            updateNetBudgetText(); //updating net budget text
                             File budgetFile = new File(getExternalFilesDir(filePath), nbFileName);
                             if(budgetFile.exists())
                                 budgetFile.delete(); //deleting file to rewrite
@@ -211,10 +213,12 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
-    //updates progress bar
-    private void updateBar(){
-        ProgressBar bar = findViewById(R.id.netBudgetBar);
-        bar.setProgress((int)((netBudget/budget)*100));
+    //updates net budget text based on value
+    @SuppressLint("SetTextI18n")
+    private void updateNetBudgetText(){
+        DecimalFormat f = new DecimalFormat("#.##"); //decimal format for rounding net budget value to nearest hundred (for cents)
+        f.setRoundingMode(RoundingMode.CEILING);
+        netBudgetText.setText(f.format(netBudget) + " " + currency);
     }
 
     //updates text which appears under net budget value when over the budget
@@ -222,4 +226,11 @@ public class MainMenu extends AppCompatActivity {
         TextView surplusText = findViewById(R.id.surplusText);
         surplusText.setText(netBudget > budget ? "+" + (netBudget-budget) : "");
     }
+
+    //updates progress bar
+    private void updateBar(){
+        ProgressBar bar = findViewById(R.id.netBudgetBar);
+        bar.setProgress((int)((netBudget/budget)*100));
+    }
+
 }

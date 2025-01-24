@@ -96,7 +96,7 @@ public class GraphAnalytics extends AppCompatActivity {
 
         // Customize PieDataSet
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "Categories");
-        pieDataSet.setColors(new int[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW});
+        pieDataSet.setColors(new int[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.GRAY});
         pieDataSet.setValueTextColor(Color.WHITE);
         pieDataSet.setValueTextSize(14f);
 
