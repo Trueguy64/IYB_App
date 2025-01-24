@@ -9,12 +9,13 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#07110D"
+        android:background="@drawable/rounded_popup"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/textView5"
@@ -52,8 +53,9 @@
             android:minHeight="48dp"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textColorHint="#33FFFFFF"
-            android:textSize="14sp" />
+            android:textColorHint="#A6FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="@color/white"/>
 
         <TextView
             android:id="@+id/textView8"
@@ -71,8 +73,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             android:contextClickable="true"
+            android:textColor="#FFFFFF"
             android:minHeight="48dp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            app:backgroundTint="@color/white"/>
 
         <TextView
             android:id="@+id/costTitle"
@@ -95,18 +99,16 @@
             android:minWidth="300dp"
             android:minHeight="48dp"
             android:textColor="#FFFFFF"
-            android:textColorHint="#33FFFFFF"
-            android:textSize="14sp" />
+            android:textColorHint="#A6FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="@color/white"/>
 
         <Button
             android:id="@+id/logAllButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="55dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="#02261F"
+            android:backgroundTint="@drawable/button_state_colors"
+            android:textColor="@color/white"
             android:text="ADD EXPENDITURE"
             android:textSize="16sp"
             android:textStyle="bold"

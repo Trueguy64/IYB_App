@@ -18,6 +18,7 @@
         <activity
             android:name=".BudgetSetup"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LogsManager"
@@ -40,7 +41,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.IYB_App.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

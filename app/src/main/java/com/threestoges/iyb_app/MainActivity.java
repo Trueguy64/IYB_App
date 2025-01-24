@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     public void startSaving(View start)
     {
         File userData = new File(getExternalFilesDir(filepath), FILENAME);
-        findViewById(R.id.start).setEnabled(false);
         ((Button)findViewById(R.id.start)).setText("Saving Now");
         Intent w = new Intent(this, welcometoiyb.class);
         Intent l = new Intent(this, MainMenu.class);

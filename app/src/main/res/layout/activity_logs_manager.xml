@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#013220"
+    android:background="@drawable/green_background_layout"
     tools:context=".LogsManager">
 
     <TextView
@@ -46,6 +46,7 @@
         android:layout_marginTop="30dp"
         android:backgroundTint="#07110D"
         android:text="BACK"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,13 +78,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="-80dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="#07110D"
+        android:layout_marginTop="-80dp"
+        android:backgroundTint="@color/button_purple"
         android:text="ADD ENTRY"
         android:textSize="16sp"
         android:translationY="110px"
         app:cornerRadius="10dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

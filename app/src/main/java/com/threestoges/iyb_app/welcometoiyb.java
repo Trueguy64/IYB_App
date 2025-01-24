@@ -36,6 +36,5 @@ public class welcometoiyb extends AppCompatActivity {
         findViewById(R.id.startsaver).setEnabled(false);
         Intent w = new Intent(this, userNew.class);
         startActivity(w);
-        finish();
     }
 }

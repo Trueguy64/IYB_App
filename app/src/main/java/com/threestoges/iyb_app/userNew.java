@@ -17,8 +17,8 @@ public class userNew extends AppCompatActivity {
     //Defining Activity Wide Variables
     private final String filepath = "user";
     private final String FILENAME = "saved-data.txt";
-    EditText family;
-    EditText given;
+    EditText firstname;
+    EditText lastname;
     private String item;
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
@@ -29,8 +29,8 @@ public class userNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContentView(R.layout.activity_user_new);
-        family = findViewById(R.id.familyName);
-        given = findViewById(R.id.givenName);
+        firstname = findViewById(R.id.firstName);
+        lastname = findViewById(R.id.lastName);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
@@ -54,10 +54,10 @@ public class userNew extends AppCompatActivity {
     }
 
     public void handleText(View text) {
-        family.addTextChangedListener(textWatcher);
-        given.addTextChangedListener(textWatcher);
-        String familyInput = family.getText().toString().trim();
-        String givenInput = given.getText().toString().trim();
+        firstname.addTextChangedListener(textWatcher);
+        lastname.addTextChangedListener(textWatcher);
+        String familyInput = firstname.getText().toString().trim();
+        String givenInput = lastname.getText().toString().trim();
         outputCurrencyToFile(item);
         outputUsernameToFile(familyInput);
         outputUsernameToFile(givenInput);
@@ -85,8 +85,8 @@ public class userNew extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            family.setText("");
-            given.setText("");
+            firstname.setText("");
+            lastname.setText("");
         } else{
             Toast.makeText(this, "Text field cannot be empty.",Toast.LENGTH_SHORT).show();
         }
@@ -119,8 +119,8 @@ public class userNew extends AppCompatActivity {
 
     // Method to update button state based on inputs
     private void updateButtonState() {
-        String familyNameInput = family.getText().toString().trim();
-        String givenNameInput = given.getText().toString().trim();
+        String familyNameInput = firstname.getText().toString().trim();
+        String givenNameInput = lastname.getText().toString().trim();
         String listInput = autoCompleteTextView.getText().toString().trim();
         // Enable the button if both fields are not empty
         findViewById(R.id.button).setEnabled(!familyNameInput.isEmpty() && !givenNameInput.isEmpty() && !listInput.isEmpty());

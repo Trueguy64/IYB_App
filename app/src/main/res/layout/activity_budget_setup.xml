@@ -1,68 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_launcher_background"
+    android:background="@drawable/green_background_layout"
     android:windowSoftInputMode="adjustResize"
+    android:fillViewport="true"
     tools:context=".BudgetSetup">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:weightSum="10">
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:fontFamily="@font/helvetica"
-            android:text="Set Your Budget"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4">
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:alpha="0.65"
-            android:gravity="center"
-            android:text="Set up your budget for your \nselected currency"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="142dp"
+                android:layout_height="165dp"
+                app:layout_constraintBottom_toTopOf="@+id/budgetTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.809"
+                app:srcCompat="@drawable/budget_limit" />
 
-        <EditText
-            android:id="@+id/budgetInputText"
-            android:layout_width="314dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="120dp"
-            android:ems="10"
-            android:hint="ENTER BUDGET HERE"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#BBBBBB"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/budgetTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/helvetica"
+                android:text="Set Your Budget"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@+id/budgetSubText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/proceedButton"
-            android:layout_width="235dp"
-            android:layout_height="77dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="36dp"
-            android:backgroundTint="#07110D"
-            android:text="PROCEED"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="15sp" />
+            <TextView
+                android:id="@+id/budgetSubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:alpha="0.65"
+                android:fontFamily="@font/helvetica"
+                android:gravity="center"
+                android:text="Set up your budget for your \nselected currency"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6">
+
+            <EditText
+                android:id="@+id/budgetInputText"
+                android:layout_width="275dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="52dp"
+                android:ems="10"
+                android:fontFamily="@font/helvetica"
+                android:hint="Enter Your Budget"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#A6FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/proceedButton"
+                android:layout_width="223dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@drawable/button_state_colors"
+                android:text="PROCEED"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/budgetInputText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
