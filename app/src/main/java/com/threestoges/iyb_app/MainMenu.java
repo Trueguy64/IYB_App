@@ -216,7 +216,7 @@ public class MainMenu extends AppCompatActivity {
     //updates net budget text based on value
     @SuppressLint("SetTextI18n")
     private void updateNetBudgetText(){
-        DecimalFormat f = new DecimalFormat("#.##"); //decimal format for rounding net budget value to nearest hundred (for cents)
+        DecimalFormat f = new DecimalFormat("#.##"); //decimal format for rounding net budget value to nearest hundred (for cents values)
         f.setRoundingMode(RoundingMode.CEILING);
         netBudgetText.setText(f.format(netBudget) + " " + currency);
     }
