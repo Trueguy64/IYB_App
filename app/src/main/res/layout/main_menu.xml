@@ -59,18 +59,19 @@
             android:max="100"
             android:maxHeight="32dip"
             android:minHeight="32dip"
-            android:paddingBottom="30dp"
-            android:paddingEnd="40dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
             android:paddingStart="40dp"
+            android:paddingLeft="40dp"
             android:paddingTop="10dp"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="30dp"
             android:progress="100"
             android:progressBackgroundTint="#673AB7"
             android:progressTint="#4CAF50"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surplusText" />
 
         <TextView
             android:id="@+id/netBudgetText"
@@ -91,6 +92,7 @@
             android:id="@+id/surplusText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="TEXT"
             android:textAlignment="center"
             android:textColor="#4CAF50"

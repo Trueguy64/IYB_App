@@ -150,7 +150,8 @@ public class GraphAnalytics extends AppCompatActivity {
                 }
             }
             try{
-                val = Double.parseDouble(q.substring(start, end));
+                if(!q.substring(start, end).contains("-")) // Making sure income isn't including in the expenses chart
+                    val = Double.parseDouble(q.substring(start, end));
             } catch(NumberFormatException e){
                 Toast.makeText(this, "FAILED TO MAP LOGS", Toast.LENGTH_SHORT).show();
             }
