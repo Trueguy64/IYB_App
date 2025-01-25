@@ -2,6 +2,7 @@ package com.threestoges.iyb_app;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.*;
 
 import androidx.activity.EdgeToEdge;
@@ -90,13 +92,18 @@ public class GraphAnalytics extends AppCompatActivity {
 
         // Check if pieEntries is populated
         if (pieEntries.isEmpty()) {
+            pieChart.setNoDataTextColor(Color.WHITE);
             pieChart.setNoDataText("No data available!");
             return;
         }
 
         // Customize PieDataSet
-        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Categories");
-        pieDataSet.setColors(new int[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.GRAY});
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "<- Categories");
+        int red = Color.rgb(208, 0, 80);
+        int green = Color.rgb(0, 208, 128);
+        int blue = Color.rgb(0, 184, 208);
+        int purple = Color.rgb(128, 0, 208);
+        pieDataSet.setColors(new int[]{red, green, blue, purple, Color.GRAY});
         pieDataSet.setValueTextColor(Color.WHITE);
         pieDataSet.setValueTextSize(14f);
 
@@ -107,16 +114,19 @@ public class GraphAnalytics extends AppCompatActivity {
         // Customize PieChart
         pieChart.setUsePercentValues(true); // Show percentages
         pieChart.setEntryLabelTextSize(12f);
-        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setEntryLabelColor(Color.WHITE);
         pieChart.setCenterText("Category Breakdown");
         pieChart.setCenterTextSize(18f);
         pieChart.setHoleRadius(40f);
         pieChart.setTransparentCircleRadius(45f);
+        Legend legend = pieChart.getLegend();
+        legend.setTextColor(Color.WHITE);
 
         // Add Description (optional)
         Description description = new Description();
         description.setText("Your Category Spending Pie Chart");
-        description.setTextSize(12f);
+        description.setTextColor(Color.WHITE);
+        description.setTextSize(18f);
         pieChart.setDescription(description);
 
         // Refresh PieChart

@@ -171,7 +171,6 @@ public class LogsManager extends AppCompatActivity {
 
     //file parser for scraping
     private String readFile(File file, int line){
-        MainMenu recur = new MainMenu();
-        return recur.readFile(file, line);
+        return new MainMenu().readFile(file, line);
     }
 }
