@@ -14,7 +14,7 @@
     android:baselineAligned="false"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".userNew">
+    tools:context=".NewUser">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

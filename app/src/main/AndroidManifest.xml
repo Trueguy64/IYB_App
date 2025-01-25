@@ -31,15 +31,15 @@
             android:exported="false" />
         <activity
             android:windowSoftInputMode="adjustResize"
-            android:name=".welcometoiyb"
+            android:name=".SetUpInstruction"
             android:exported="false" />
         <activity
             android:windowSoftInputMode="adjustResize"
-            android:name=".userNew"
+            android:name=".NewUser"
             android:exported="false"
             android:finishOnTaskLaunch="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".StartUp"
             android:exported="true"
             android:theme="@style/Theme.IYB_App.MySplash">
             <intent-filter>
