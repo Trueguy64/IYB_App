@@ -47,33 +47,7 @@ public class BudgetSetup extends AppCompatActivity {
                         budget = Double.parseDouble(budgetInput.getText().toString());
                         double netBudget = budget;
                         File budgetFile = new File(getExternalFilesDir(filePath), nbFileName);
-                        //checking for existing data to replace
-                        if(budgetFile.exists()){
-                            try(BufferedReader r = new BufferedReader(new FileReader(budgetFile))){
-                                netBudget = Double.parseDouble(r.readLine());
-                            } catch(IOException e){
-                                Toast.makeText(BudgetSetup.this, "ERROR: BUFFEREDREADER", Toast.LENGTH_SHORT).show();
-                            }
-                            budgetFile.delete(); //deleting file to rewrite
-                            try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
-                                //rewrite file with new budget value
-                                f.write((netBudget + "\n").getBytes());
-                                f.write(String.valueOf(budget).getBytes());
-                            } catch(IOException e){
-                                Toast.makeText(BudgetSetup.this, "ERROR: FILEOUTPUTSTREAM", Toast.LENGTH_SHORT).show();
-                            }
-                        } else{
-                            //if there is no existing data (first time setup):
-                            try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
-                                f.write((netBudget + "\n").getBytes());
-                                f.write(String.valueOf(budget).getBytes());
-                            } catch(IOException e){
-                                Toast.makeText(BudgetSetup.this, "ERROR: FILEOUTPUTSTREAM", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        //Log.d("inputlog", readFile(budgetFile, 1));
-                        Intent mainMenu = new Intent(BudgetSetup.this, MainMenu.class);
-                        startActivity(mainMenu); //go to main menu
+                        updateBudget(budgetFile, netBudget);
                         finish();
                     } catch(NumberFormatException e){
                         Toast.makeText(BudgetSetup.this, "INVALID INPUT", Toast.LENGTH_SHORT).show();
@@ -83,5 +57,35 @@ public class BudgetSetup extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void updateBudget(File budgetFile, double netBudget){
+        //checking for existing data to replace
+        if(budgetFile.exists()){
+            try(BufferedReader r = new BufferedReader(new FileReader(budgetFile))){
+                netBudget = Double.parseDouble(r.readLine());
+            } catch(IOException e){
+                Toast.makeText(BudgetSetup.this, "ERROR: BUFFEREDREADER", Toast.LENGTH_SHORT).show();
+            }
+            budgetFile.delete(); //deleting file to rewrite
+            try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
+                //rewrite file with new budget value
+                f.write((netBudget + "\n").getBytes());
+                f.write(String.valueOf(budget).getBytes());
+            } catch(IOException e){
+                Toast.makeText(BudgetSetup.this, "ERROR: FILEOUTPUTSTREAM", Toast.LENGTH_SHORT).show();
+            }
+        } else{
+            //if there is no existing data (first time setup):
+            try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
+                f.write((netBudget + "\n").getBytes());
+                f.write(String.valueOf(budget).getBytes());
+            } catch(IOException e){
+                Toast.makeText(BudgetSetup.this, "ERROR: FILEOUTPUTSTREAM", Toast.LENGTH_SHORT).show();
+            }
+        }
+        //Log.d("inputlog", readFile(budgetFile, 1));
+        Intent mainMenu = new Intent(BudgetSetup.this, MainMenu.class);
+        startActivity(mainMenu); //go to main menu
     }
 }
