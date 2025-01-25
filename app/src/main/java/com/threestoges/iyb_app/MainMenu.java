@@ -184,7 +184,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     //file parser for scraping
-    private String readFile(File file, int line){
+    String readFile(File file, int line){
         if(line < 0){
             try(BufferedReader r = new BufferedReader(new FileReader(file))){
                 StringBuilder listed = new StringBuilder(); //to append each line

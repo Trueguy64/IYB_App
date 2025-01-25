@@ -171,31 +171,7 @@ public class LogsManager extends AppCompatActivity {
 
     //file parser for scraping
     private String readFile(File file, int line){
-        if(line < 0){
-            try(BufferedReader r = new BufferedReader(new FileReader(file))){
-                StringBuilder listed = new StringBuilder(); //to append each line
-                String add;
-                while((add = r.readLine()) != null){
-                    listed.append(add).append("\n");
-                }
-                r.close();
-                return listed.toString(); //returns string that can be converted into array || list
-            } catch(IOException e){
-                Toast.makeText(this, "ERROR: BUFFEREDREADER", Toast.LENGTH_SHORT).show();
-                return "empty";
-            }
-        }
-        //gets string from parameter value line
-        try(BufferedReader r = new BufferedReader(new FileReader(file))){
-            String result = r.readLine();
-            for(int q = 0; q < line; q++){
-                result = r.readLine();
-            }
-            r.close();
-            return result;
-        } catch(IOException e){
-            Toast.makeText(this, "NOTHING TO READ", Toast.LENGTH_SHORT).show();
-            return "empty";
-        }
+        MainMenu recur = new MainMenu();
+        return recur.readFile(file, line);
     }
 }
