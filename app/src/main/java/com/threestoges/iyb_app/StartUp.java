@@ -26,31 +26,34 @@ public class StartUp extends AppCompatActivity {
         SplashScreen.installSplashScreen(this);
         setContentView(R.layout.activity_main);
         // Makes the activity fullscreen by making top (notification) and bottom bars translucent
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        Intent l = new Intent(this, MainMenu.class);
-        Intent b = new Intent(this, BudgetSetup.class);
+        FullScreen.configureWindow(this);
         userData = new File(getExternalFilesDir(filepath), FILENAME);
         userBudget = new File(getExternalFilesDir(filepath), nbFileName);
-        // The application will only bring the user to the main menu by checking if both user data and their set budget exists
-        if(userData.exists()&userBudget.exists()){
-            startActivity(l);
-            finish();
-        } else if (userData.exists()&!userBudget.exists()) {
-            startActivity(b);
-            finish();
-        }
+        checkUserData();
     }
     // Responsible for the button function present in the start screen
     public void startSaving(View start)
     {
-        Intent l = new Intent(this, MainMenu.class);
-        Intent w = new Intent(this, SetUpInstruction.class);
-        File userData = new File(getExternalFilesDir(filepath), FILENAME);
         ((Button)findViewById(R.id.start)).setText("Saving Now");
-        startActivity(!userData.exists() ? w : l);
-        finish();
+        checkUserData();
+    }
+    public void checkUserData()
+    {
+        Intent l = new Intent(this, MainMenu.class);
+        Intent b = new Intent(this, BudgetSetup.class);
+        Intent w = new Intent(this, SetUpInstruction.class);
+        // The application will only bring the user to the main menu by checking if both user data and their set budget exists
+        if(userData.exists()&&userBudget.exists()){
+            startActivity(l);
+            finish();
+        } else if (userData.exists()&&!userBudget.exists()) {
+            startActivity(b);
+            finish();
+        }
+        else
+        {
+            startActivity(w);
+            finish();
+        }
     }
 }

@@ -6,21 +6,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/green_background_layout"
-    android:windowSoftInputMode="adjustResize"
     android:fillViewport="true"
-    tools:context=".BudgetSetup">
+    android:background="@drawable/green_background_layout">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="vertical"
-        android:weightSum="10">
+        android:weightSum="10"
+        tools:context=".BudgetSetup">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_weight="5">
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -31,8 +30,23 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.809"
+                app:layout_constraintVertical_bias="0.754"
                 app:srcCompat="@drawable/budget_limit" />
+
+            <TextView
+                android:id="@+id/budgetSubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:alpha="0.65"
+                android:fontFamily="@font/helvetica"
+                android:gravity="center"
+                android:text="Set up your budget for your \nselected currency"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/budgetTitle"
@@ -48,27 +62,12 @@
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/budgetSubText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:alpha="0.65"
-                android:fontFamily="@font/helvetica"
-                android:gravity="center"
-                android:text="Set up your budget for your \nselected currency"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6">
+            android:layout_weight="5">
 
             <EditText
                 android:id="@+id/budgetInputText"

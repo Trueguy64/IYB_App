@@ -8,36 +8,6 @@
     android:background="@drawable/green_background_layout"
     tools:context=".LogsManager">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="135dp"
-        android:layout_marginEnd="100dp"
-        android:text="THIS MONTH"
-        android:textColor="#E2E2E2"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="330dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="30dp"
-        android:text="EXPENDITURE LOGS"
-        android:textColor="#FFFEFE"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
     <Button
         android:id="@+id/backButton"
         android:layout_width="100dp"
@@ -52,12 +22,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/addEntryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="-80dp"
+        android:backgroundTint="@color/button_purple"
+        android:text="ADD ENTRY"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:translationY="110px"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="180dp"
         android:layout_marginBottom="150dp"
+        android:layout_marginTop="180dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,21 +60,29 @@
             android:listSelector="#4CAF50" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/addEntryButton"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="330dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="84dp"
+        android:text="EXPENDITURE LOGS"
+        android:textColor="#FFFEFE"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginTop="-80dp"
-        android:backgroundTint="@color/button_purple"
-        android:text="ADD ENTRY"
+        android:text="THIS MONTH"
+        android:textColor="#E2E2E2"
         android:textSize="16sp"
-        android:translationY="110px"
-        app:cornerRadius="10dp"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

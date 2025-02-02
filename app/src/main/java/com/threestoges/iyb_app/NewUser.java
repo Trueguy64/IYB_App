@@ -28,21 +28,20 @@ public class NewUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContentView(R.layout.activity_user_new);
         firstname = findViewById(R.id.firstName);
         lastname = findViewById(R.id.lastName);
+
         // Makes the activity fullscreen by making top (notification) and bottom bars translucent
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        FullScreen.configureWindow(this);
+
+        // Custom ArrayAdapter for the currency selection
         autoCompleteTextView = findViewById(R.id.dropcurrencies);
         autoCompleteTextView.addTextChangedListener(textWatcher);
-        // Custom ArrayAdapter for the currency selection
         adapterItems = new ArrayAdapter<>(this, R.layout.dropdown_currencies, currencies);
         autoCompleteTextView.setAdapter(adapterItems);
 
+        new KeyboardUtil(this, findViewById(android.R.id.content).getRootView());
         // Set the item click listener for AutoCompleteTextView
         autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
             item = parent.getItemAtPosition(position).toString();

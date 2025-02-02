@@ -31,13 +31,10 @@ public class LogsManager extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_logs_manager);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Makes the activity fullscreen by making top (notification) and bottom bars translucent
+        FullScreen.configureWindow(this);
 
         //setup, file integrity
         File userFile = new File(getExternalFilesDir(filePath), "saved-data.txt");

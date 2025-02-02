@@ -34,7 +34,7 @@
             android:name=".SetUpInstruction"
             android:exported="false" />
         <activity
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustNothing"
             android:name=".NewUser"
             android:exported="false"
             android:finishOnTaskLaunch="true" />

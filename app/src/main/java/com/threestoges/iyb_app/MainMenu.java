@@ -36,13 +36,10 @@ public class MainMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.main_menu);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Makes the activity fullscreen by making top (notification) and bottom bars translucent
+        FullScreen.configureWindow(this);
 
         //retrieving user settings for currency
         File userFile = new File(getExternalFilesDir(filePath), "saved-data.txt");
@@ -170,7 +167,38 @@ public class MainMenu extends AppCompatActivity {
                             addToLogs.cancel();
                             //updating bar and surplus text -> closing popup, end of addToLOgs
                         } else {
-                            Toast.makeText(MainMenu.this, "COST HIGHER THAN NET BUDGET, TRY AGAIN", Toast.LENGTH_SHORT).show();
+                            netBudget -= sCost;
+                            updateNetBudgetText(); //updating net budget text
+                            File budgetFile = new File(getExternalFilesDir(filePath), nbFileName);
+                            if(budgetFile.exists())
+                                budgetFile.delete(); //deleting file to rewrite
+                            try(FileOutputStream f = new FileOutputStream(budgetFile,true)){
+                                //rewriting budgetFile with new values
+                                f.write((netBudget + "\n").getBytes());
+                                f.write((String.valueOf(budget)).getBytes());
+                            } catch(IOException e){
+                                Toast.makeText(MainMenu.this, "ERROR: BUDGET", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @SuppressLint("SimpleDateFormat")
+                            SimpleDateFormat getDate = new SimpleDateFormat("dd-MM-yyyy");
+                            String currentDate = getDate.format(new Date());
+                            int id = 0;
+                            String q = (currentDate + "," + sName + "," + sCategory + "," + sCost + "," + currency + ",id: " + id); //logs string format
+                            for(String c: logs){
+                                id += c.equals(q) ? 1 : 0; //checking for duplicates
+                            }
+                            q = (currentDate + "," + sName + "," + sCategory + "," + sCost + "," + currency + ",id: " + id);
+                            logs.add(q);
+                            //writing new log entry into logFIle
+                            try(FileOutputStream f = new FileOutputStream(logFile,true)){
+                                f.write((q + "\n").getBytes());
+                            } catch(IOException e){
+                                Toast.makeText(MainMenu.this, "LOG ERROR, TRY AGAIN", Toast.LENGTH_SHORT).show();
+                            }
+                            updateBar();
+                            updateSurplusText();
+                            addToLogs.cancel();
                         }
                     } catch(NumberFormatException e){
                         Toast.makeText(MainMenu.this, "INVALID INPUT", Toast.LENGTH_SHORT).show();
@@ -216,7 +244,7 @@ public class MainMenu extends AppCompatActivity {
     //updates net budget text based on value
     @SuppressLint("SetTextI18n")
     private void updateNetBudgetText(){
-        DecimalFormat f = new DecimalFormat("#.##"); //decimal format for rounding net budget value to nearest hundred (for cent values)
+        DecimalFormat f = new DecimalFormat("###,###.##");  //decimal format for rounding net budget value to nearest hundred (for cent values)
         f.setRoundingMode(RoundingMode.CEILING);
         netBudgetText.setText(f.format(netBudget) + " " + currency);
     }
@@ -224,7 +252,13 @@ public class MainMenu extends AppCompatActivity {
     //updates text which appears under net budget value when over the budget
     private void updateSurplusText(){
         TextView surplusText = findViewById(R.id.surplusText);
-        surplusText.setText(netBudget > budget ? "+" + (netBudget-budget) : "");
+        if(netBudget>budget){
+            surplusText.setText("You are " + (Math.abs((int)((budget/netBudget)*100))) + " above the budget");
+        } else if (netBudget < 0) {
+            surplusText.setText("You are " + (Math.abs((int)((netBudget/budget)*100))) + "% over budget");
+        } else {
+            surplusText.setText("");
+        }
     }
 
     //updates progress bar

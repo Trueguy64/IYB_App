@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_weight="5">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -52,7 +52,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6">
+        android:layout_weight="5">
 
         <Button
             android:id="@+id/button"
@@ -78,6 +78,7 @@
             android:layout_width="150dp"
             android:layout_height="48dp"
             android:ems="10"
+            android:digits="qwertzuiopasdfghjklyxcvbnmQWERTZUIOPASDFGHJKLYXCVBNM"
             android:focusable="true"
             android:fontFamily="@font/helvetica"
             android:hint="Given Name"
