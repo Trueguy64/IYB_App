@@ -31,13 +31,13 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintBottom_toTopOf="@+id/graphTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.131"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/graphSubtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="THIS MONTH"
@@ -46,10 +46,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/graphTitle" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/graphTitle"
                 android:layout_width="393dp"
                 android:layout_height="41dp"
                 android:text="YOUR CATEGORY SPENDINGS"

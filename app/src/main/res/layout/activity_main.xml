@@ -13,7 +13,7 @@
 
         <ImageView
 
-            android:id="@+id/imageView"
+            android:id="@+id/background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="IYB Savings"
@@ -39,14 +39,14 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/iyblogo"
             android:layout_width="263dp"
             android:layout_height="97dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/background"
             app:srcCompat="@drawable/iyb_riel_dollar" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -68,7 +68,7 @@
             android:textSize="14sp"
             android:translationZ="2dp"
             app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"

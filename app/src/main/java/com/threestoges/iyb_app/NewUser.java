@@ -31,6 +31,17 @@ public class NewUser extends AppCompatActivity {
         setContentView(R.layout.activity_user_new);
         firstname = findViewById(R.id.firstName);
         lastname = findViewById(R.id.lastName);
+        Button backButton = findViewById(R.id.backButton);
+
+        // Responsible for going to the previous Activity
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent back = new Intent(NewUser.this, SetUpInstruction.class);
+                startActivity(back);
+                finish();
+            }
+        });
 
         // Makes the activity fullscreen by making top (notification) and bottom bars translucent
         FullScreen.configureWindow(this);

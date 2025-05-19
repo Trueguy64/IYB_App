@@ -253,9 +253,9 @@ public class MainMenu extends AppCompatActivity {
     private void updateSurplusText(){
         TextView surplusText = findViewById(R.id.surplusText);
         if(netBudget>budget){
-            surplusText.setText("You are " + (Math.abs((int)((budget/netBudget)*100))) + " above the budget");
+            surplusText.setText("You are " + (Math.abs((int)((netBudget-budget)))) + " " + currency + " above the budget");
         } else if (netBudget < 0) {
-            surplusText.setText("You are " + (Math.abs((int)((netBudget/budget)*100))) + "% over budget");
+            surplusText.setText("You are " + (Math.abs((int)((netBudget-budget)))) + " " + currency + " over budget");
         } else {
             surplusText.setText("");
         }

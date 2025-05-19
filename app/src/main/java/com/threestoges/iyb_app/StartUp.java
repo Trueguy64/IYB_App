@@ -34,25 +34,20 @@ public class StartUp extends AppCompatActivity {
     // Responsible for the button function present in the start screen
     public void startSaving(View start)
     {
+        Intent w = new Intent(this, SetUpInstruction.class);
         ((Button)findViewById(R.id.start)).setText("Saving Now");
-        checkUserData();
+        startActivity(w);
     }
     public void checkUserData()
     {
         Intent l = new Intent(this, MainMenu.class);
         Intent b = new Intent(this, BudgetSetup.class);
-        Intent w = new Intent(this, SetUpInstruction.class);
         // The application will only bring the user to the main menu by checking if both user data and their set budget exists
         if(userData.exists()&&userBudget.exists()){
             startActivity(l);
             finish();
         } else if (userData.exists()&&!userBudget.exists()) {
             startActivity(b);
-            finish();
-        }
-        else
-        {
-            startActivity(w);
             finish();
         }
     }
